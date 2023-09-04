@@ -3,12 +3,13 @@ title: "Markdown 基础语法"
 subtitle: "Markdown 基础语法"
 description: ""
 date: 2023-09-05T01:09:00+08:00
+lastmod: 2023-09-05T01:09:00+08:00
 draft: false
 
 authors: [yzx]
-tags: ['Markdown']
-categories: []
-series: []
+tags: ["Markdown"]
+categories: ["documentation"]
+series: ["getting-start"]
 
 featuredImage: ""
 featuredImagePreview: ""
