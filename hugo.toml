@@ -1,0 +1,32 @@
+baseURL = 'http://www.nihility.cn/'
+languageCode = 'zh-CN'
+title = 'yzx-博客'
+theme = "DoIt"
+
+# [en, zh-cn, fr, pl, ...] determines default content language
+defaultContentLanguage = "zh-cn"
+weight = 2
+# 语言名称
+languageName = "简体中文"
+# 是否包括中日韩文字
+hasCJKLanguage = true
+# 默认每页列表显示的文章数目
+paginate = 12
+# 版权描述，仅仅用于 SEO
+copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
+
+# whether to use robots.txt
+# 是否使用 robots.txt
+enableRobotsTXT = true
+# whether to use git commit log
+# 是否使用 git 信息
+enableGitInfo = false
+# whether to use emoji code
+# 是否使用 emoji 代码
+enableEmoji = true
+
+#canonifyURLs = true
+
+# ignore some build errors
+# 忽略一些构建错误
+# ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]

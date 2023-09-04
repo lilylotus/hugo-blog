@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏《圈小猫》</title>
+
+    <style type="text/css">
+        body {
+            margin: 0px;
+            background-color: #000000
+        }
+
+        body {
+            color: #ffffff;
+            font-family: Comic Sans MS;
+            background-image: url(bg.jpg);
+            background-repeat: repeat;
+            background-color: #d9d9d9;
+        }
+
+        td {
+            color: #ffffff;
+            font-family: Comic Sans MS
+        }
+
+        th {
+            color: #ffffff;
+            font-family: Comic Sans MS
+        }
+
+        .style6 {
+            font-weight: bold;
+            font-size: 12px
+        }
+
+        .style7 {
+            font-size: 18px
+        }
+
+        .style8 {
+            font-size: 12px
+        }
+
+        .style9 {
+            font-size: 24px;
+            font-family: "楷体_GB2312"
+        }
+
+        .style10 {
+            color: #ff0000
+        }
+
+        body,
+        td,
+        th {
+            color: #666;
+        }
+
+        a {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            color: #666;
+        }
+
+        a:link {
+            text-decoration: none;
+            color: #06F;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #09F;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: #09F;
+        }
+
+        a:active {
+            text-decoration: none;
+            color: #09F;
+        }
+    </style>
+
+</head>
+<body>
+    <div align="center" style="margin-top: 4%;">
+        <p>喔呦，迷路了，游戏小憩一下</p>
+        <p><font size="3" face="黑体">游戏《圈小猫》</font></p>
+        <p></p>
+      
+        <div id="catch-the-cat"></div>
+
+        <script type="text/javascript" src="js/phaser.min.js"></script>
+        <script type="text/javascript" src="js/catch-the-cat.js"></script>
+        <script type="text/javascript">
+            window.game = new CatchTheCatGame({ w: 11, h: 11, r: 20, 
+                backgroundColor: 16777215, parent: "catch-the-cat", 
+                statusBarAlign: "center", credit: "catch-cat" });
+        </script>
+    </div>
+</body>
+</html>

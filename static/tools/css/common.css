@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+.margin-adjust {
+    margin-top: 10px;
+}
+
+textarea {
+    width: 100%;
+    overflow-y: hidden;
+    outline-color: rgb(4, 160, 4);
+}
+
+p {
+    margin: 0 0;
+}
+
+footer {
+    height: fit-content;
+    width: 100%;
+    text-align: center;
+    line-height: 1.25rem;
+    padding: 1rem 0;
+}

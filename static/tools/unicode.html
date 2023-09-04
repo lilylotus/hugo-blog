@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicode编码转换</title>
+    <meta name="author" content="nihility.cn">
+    <meta name="Copyright" content="nihility.cn">
+    <meta name="keywords" content="Unicode编码转换">
+    <meta name="description" content="Unicode编码转换">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="margin-adjust">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="urlencode.html">URL编/解码</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="json.html">JSON格式化</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="base64.html">BASE64编/解码</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="xml.html">XML格式化</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="unicode.html">Unicode/UTF8编码转换</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="margin-adjust">
+            <h1 class="text-secondary">Unicode编码转换工具</h1>
+        </div>
+        <div class="row margin-adjust">
+            <div class="col">
+                <textarea name="content" id="content" rows="4" placeholder="请输入 Unicode 编码转换内容"
+                    class="border rounded border-success"></textarea>
+            </div>
+        </div>
+        <div class="margin-adjust">
+            <button type="button" id="chineseToUnicode" class="btn btn-success btn-sm"
+                onclick="chineseToUnicode()">中文转Unicode</button>
+            <button type="button" id="unicodeToChinese" class="btn btn-success btn-sm"
+                onclick="unicodeToChinese()">Unicode转中文</button>
+            <button type="button" id="chineseToUtf8" class="btn btn-success btn-sm"
+                onclick="chineseToUtf8()">中文转UTF-8</button>
+            <button type="button" id="utf8ToChinese" class="btn btn-success btn-sm"
+                onclick="utf8ToChinese()">UTF-8转中文</button>
+            <button type="button" id="copyBtnId" class="btn btn-danger btn-sm" onclick="resultCpy()">复制</button>
+        </div>
+        <div class="row margin-adjust">
+            <div class="col">
+                <textarea name="resultContent" id="resultContent" rows="4"
+                    class="border rounded border-success"></textarea>
+            </div>
+        </div>
+        <div class="margin-adjust">
+            <div class="col border rounded border-success alert alert-info" style="font-size:16px;">
+                <p>Unicode编码转换</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-line">
+                前往 <a href="/" target="_blank" rel="noopener noreferrer" title="yzx-博客">yzx-博客</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+
+        function isEmptyString(str) {
+            return str == null || str === '';
+        }
+
+        function isNotEmptyString(str) {
+            return !isEmptyString(str);
+        }
+
+        function left_zero_4(str) {
+            if (str != null && str != '' && str != 'undefined') {
+                if (str.length == 2) {
+                    return '00' + str;
+                }
+            }
+            return str;
+        }
+        function ascii(str) {
+            var value = '';
+            for (var i = 0; i < str.length; i++) {
+                value += '\&#x' + left_zero_4(parseInt(str.charCodeAt(i)).toString(16)) + ';';
+            }
+            return value;
+        }
+        function unicode(str) {
+            var value = '';
+            for (var i = 0; i < str.length; i++) {
+                value += '\\u' + left_zero_4(parseInt(str.charCodeAt(i)).toString(16));
+            }
+            return value;
+        }
+        function unicode1(str) {
+            var value = '';
+            for (var i = 0; i < str.length; i++)
+                value += '&#' + str.charCodeAt(i) + ';';
+            return value;
+        }
+        function reconvert(str) {
+            str = str.replace(/(\\u)(\w{1,4})/gi, function ($0) {
+                return (String.fromCharCode(parseInt((escape($0).replace(/(%5Cu)(\w{1,4})/g, "$2")), 16)));
+            });
+            str = str.replace(/(&#x)(\w{1,4});/gi, function ($0) {
+                return String.fromCharCode(parseInt(escape($0).replace(/(%26%23x)(\w{1,4})(%3B)/g, "$2"), 16));
+            });
+            str = str.replace(/(&#)(\d{1,6});/gi, function ($0) {
+                return String.fromCharCode(parseInt(escape($0).replace(/(%26%23)(\d{1,6})(%3B)/g, "$2")));
+            });
+
+            return str;
+        }
+
+        function chineseToUnicode() {
+            var content = document.getElementById('content').value;
+            if (isNotEmptyString(content)) {
+                document.getElementById('resultContent').value = unicode(content);
+            }
+        }
+
+        function unicodeToChinese() {
+            var content = document.getElementById('content').value;
+            if (isNotEmptyString(content)) {
+                document.getElementById('resultContent').value = reconvert(content);
+            }
+        }
+
+        function resultCpy() {
+            var resultContent = document.getElementById('resultContent').value;
+            if (isNotEmptyString(resultContent)) {
+                // navigator clipboard 需要 https 等安全上下文
+                if (navigator.clipboard && window.isSecureContext) {
+                    // navigator clipboard 向剪贴板写文本
+                    return navigator.clipboard.writeText(resultContent);
+                } else {
+                    // 执行复制命令并移除文本框
+                    document.getElementById('resultContent').select();
+                    document.execCommand('copy');
+                }
+            }
+        }
+
+        function ConvUtf(obj) {
+            return obj.replace(/[^\u0000-\u00FF]/g, function ($0) { return escape($0).replace(/(%u)(\w { 4 })/gi, "&#x$2; ") });
+        }
+        function ResChinese(obj) {
+            return unescape(obj.replace(/&#x/g, '%u').replace(/; /g, ''));
+        }
+
+        function chineseToUtf8() {
+            var content = document.getElementById('content').value;
+            if (isNotEmptyString(content)) {
+                document.getElementById('resultContent').value = ConvUtf(content);
+            }
+        }
+        function utf8ToChinese() {
+            var content = document.getElementById('content').value;
+            if (isNotEmptyString(content)) {
+                document.getElementById('resultContent').value = ResChinese(content);
+            }
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?e8b84f24f9f0b89078afbb0e07d72af3";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</body>
+
+</html>

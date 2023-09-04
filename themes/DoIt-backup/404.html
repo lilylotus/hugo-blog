@@ -1,0 +1,33 @@
+{{- define "title" }}
+    {{- T "pageNotFound" | printf "404 %v" }} - {{ .Site.Title -}}
+{{- end -}}
+
+{{- define "content" -}}
+    <!-- <div class="page" id="content-404">
+        <h1 id="error-emoji"></h1>
+        <p class="error-text">
+            {{- T "pageNotFoundText" -}}&nbsp;
+            <a href="javascript:void(0);" title="{{ T `back` }}" onclick="window.history.back();"><i class="far fa-hand-point-left fa-fw"></i></a>
+        </p>
+    </div>
+    <script type="text/javascript">
+        (function() {
+            var emojiArray = ['\\(o_o)/', '(˚Δ˚)b', '(^-^*)', '(≥o≤)', '(^_^)b', '(·_·)','(=\'X\'=)', '(>_<)', '(;-;)'];
+            document.getElementById('error-emoji').appendChild(document.createTextNode(emojiArray[Math.floor(Math.random() * emojiArray.length)]));
+        })();
+    </script> -->
+
+    <div align="center" style="margin-top: 8%;">
+        <p>喔呦，迷路了，游戏小憩一下 <font size="3" face="黑体">《圈小猫》</font></p>
+    
+        <div id="catch-the-cat"></div>
+
+        <script type="text/javascript" src="/tools/cat/js/phaser.min.js"></script>
+        <script type="text/javascript" src="/tools/cat/js/catch-the-cat.js"></script>
+        <script type="text/javascript">
+            window.game = new CatchTheCatGame({ w: 11, h: 11, r: 20, 
+                backgroundColor: 16777215, parent: "catch-the-cat", 
+                statusBarAlign: "center", credit: "catch-cat" });
+        </script>
+    </div>
+{{- end -}}

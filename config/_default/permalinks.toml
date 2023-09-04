@@ -1,0 +1,11 @@
+# Permalinks config (https://gohugo.io/content-management/urls/#permalinks)
+# Permalinks 配置 (https://gohugo.io/content-management/urls/#permalinks)
+
+# posts = ":year/:month/:filename"
+# posts = "/articles/:year/:month/:slug/"
+posts = ":year/:month/:filename"
+# training = ":year/:month/:filename"
+# type = ":year/:month/:filename"
+# [page]
+#     posts = '/articles/:year/:month/:slug/'
+#     tutorials = '/training/:slug/'

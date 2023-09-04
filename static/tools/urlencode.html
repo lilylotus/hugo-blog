@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL 在线编码、解码工具</title>
+    <meta name="author" content="nihility.cn">
+    <meta name="Copyright" content="nihility.cn">
+    <meta name="keywords" content="URL编码,URL解码,URL编码解码,URL网址编码解码">
+    <meta name="description" content="在线 URL 网址编码、解码工具">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="margin-adjust">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="urlencode.html">URL编/解码</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="json.html">JSON格式化</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="base64.html">BASE64编/解码</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="xml.html">XML格式化</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="unicode.html">Unicode/UTF8编码转换</a>
+                </li>
+            </ul>
+        </div>
+        <div class="margin-adjust">
+            <h1 class="text-secondary">URL 编码、解码工具</h1>
+        </div>
+        <div class="row margin-adjust">
+            <div class="col">
+                <textarea name="originUrl" id="originUrlId" rows="6" placeholder="请输入要编/解码的 URL"
+                    class="border rounded border-success"></textarea>
+            </div>
+        </div>
+        <div class="margin-adjust">
+            <button type="button" id="urlEncodeBtnId" class="btn btn-success btn-sm">URL 编码</button>
+            <button type="button" id="urlDecodeBtnId" class="btn btn-success btn-sm">URL 解码</button>
+            <button type="button" id="urlCopyBtnId" class="btn btn-danger btn-sm">复制</button>
+        </div>
+        <div class="row margin-adjust">
+            <div class="col">
+                <textarea name="codedContent" id="codedContentlId" rows="6"
+                    class="border rounded border-success"></textarea>
+            </div>
+        </div>
+        <div class="margin-adjust">
+            <div class="col border rounded border-success alert alert-info" style="font-size:16px;">
+                <p>1. URL 编码协议 （RFC3986）规定：URL 中只允许包含英文字母、数字、以及 4 个 <code>- _ . ~</code> 特殊字符和所有的保留字符
+                    <code>! * ' ( ) ; : @ & = + $ , / ? # [ ]</code></p>
+                <p>2. URL 路径或参数中带有中文、特殊字符时，需要对 URL 进行编码（采用十六进制编码格式）</p>
+                <p>3. URL 中不允许包含任何非 ASCII 字符（比如中文），否则就会造成 URL 解析错误</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-line">
+                前往 <a href="/" target="_blank" rel="noopener noreferrer" title="yzx-博客">yzx-博客</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+
+        function isEmptyString(str) {
+            return str == null || str === '';
+        }
+
+        function isNotEmptyString(str) {
+            return !isEmptyString(str);
+        }
+
+        const urlEncodeBtn = document.getElementById('urlEncodeBtnId');
+        urlEncodeBtn.onclick = function () {
+            var url = document.getElementById('originUrlId').value;
+            if (isNotEmptyString(url)) {
+                document.getElementById('codedContentlId').value = encodeURIComponent(url);
+            }
+        }
+
+        const urlDecodeBtn = document.getElementById('urlDecodeBtnId');
+        urlDecodeBtn.onclick = function () {
+            var url = document.getElementById('originUrlId').value;
+            if (isNotEmptyString(url)) {
+                document.getElementById('codedContentlId').value = decodeURIComponent(url);
+            }
+        }
+
+        const urlCopyBtn = document.getElementById('urlCopyBtnId');
+        urlCopyBtn.onclick = function () {
+            var codedContent = document.getElementById('codedContentlId').value;
+            if (isNotEmptyString(codedContent)) {
+                // navigator clipboard 需要 https 等安全上下文
+                if (navigator.clipboard && window.isSecureContext) {
+                    // navigator clipboard 向剪贴板写文本
+                    return navigator.clipboard.writeText(codedContent);
+                } else {
+                    // 执行复制命令并移除文本框
+                    document.getElementById('codedContentlId').select();
+                    document.execCommand('copy');
+                }
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?e8b84f24f9f0b89078afbb0e07d72af3";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</body>
+
+</html>
