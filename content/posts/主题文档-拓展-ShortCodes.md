@@ -183,7 +183,7 @@ This is a **right-aligned** paragraph.
 
 呈现的输出效果如下:
 
-{{< image src="/images/lighthouse.webp" caption="Lighthouse (`image`)" src_s="/images/lighthouse-small.webp" src_l="/images/lighthouse-large.webp" >}}
+{{< image src="/images/lighthouse.webp" caption="Lighthouse (`image`)" src_s="/images/lighthouse-small.webp" src_l="/images/lighthouse.webp" >}}
 
 ## admonition
 
