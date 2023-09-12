@@ -6,9 +6,8 @@ draft: false
 description: "DoIt 主题在 Hugo 内置的 shortcode 的基础上提供多个扩展的 shortcode."
 
 authors: [yzx]
-tags: ["shortcodes"]
-categories: ["documentation"]
-series: ["getting-start"]
+tags: ["Blog"]
+categories: ["博客入门"]
 
 lightgallery: true
 math:

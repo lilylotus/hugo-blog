@@ -8,11 +8,8 @@ draft: false
 
 authors: [yzx]
 tags: ["Markdown"]
-categories: ["documentation"]
-series: ["getting-start"]
+categories: ["博客入门"]
 
-featuredImage: ""
-featuredImagePreview: ""
 ---
 
 这篇文章提供了可以在 Hugo 的文章中使用的基本 Markdown 语法示例.
