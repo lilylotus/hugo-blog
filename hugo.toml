@@ -1,4 +1,4 @@
-baseURL = 'http://www.nihility.cn/'
+baseURL = 'https://www.nihility.cn/'
 languageCode = 'zh-CN'
 title = 'yzx-博客'
 theme = "DoIt"
